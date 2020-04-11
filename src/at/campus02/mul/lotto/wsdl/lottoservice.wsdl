@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://lotto.mul.campus02.at/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/"
+	targetNamespace="http://lotto.mul.campus02.at/" name="LottoService">
+	<types>
+		<xsd:schema targetNamespace="http://lotto.mul.campus02.at/">
+			<xsd:element name="predictNumbersResponse"
+				type="xsd:string" />
+		</xsd:schema>
+	</types>
+	<message name="predictNumbers">
+	</message>
+	<message name="predictNumbersResponse">
+		<part name="parameters" element="tns:predictNumbersResponse" />
+	</message>
+	<portType name="LottoService">
+		<operation name="predictNumbers">
+			<input message="tns:predictNumbers" />
+			<output message="tns:predictNumbersResponse" />
+		</operation>
+	</portType>
+	<binding name="LottoServicePortBinding"
+		type="tns:LottoService">
+		<soap:binding
+			transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+		<operation name="predictNumbers">
+			<soap:operation
+				soapAction="http://lotto.mul.campus02.at/LottoService/predictNumbers" />
+			<input>
+				<soap:body use="literal" />
+			</input>
+			<output>
+				<soap:body use="literal" />
+			</output>
+		</operation>
+	</binding>
+	<service name="LottoService">
+		<port name="LottoServicePortBinding"
+			binding="tns:LottoServicePortBinding">
+			<soap:address
+				location="http://localhost:8889/hellojaxws/lotto" />
+		</port>
+	</service>
+</definitions>
